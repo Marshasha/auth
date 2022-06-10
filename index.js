@@ -1,10 +1,12 @@
 const express = require('express');
-const http = require('http');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const helmet = require('helmet');
+
 
 // DB setup
 mongoose.connect("mongodb://localhost:27017/auth");
@@ -12,12 +14,15 @@ mongoose.connect("mongodb://localhost:27017/auth");
 
 
 // App setup
+app.use(helmet());
 app.use(morgan('combined'));
-app.use(bodyParser.json({type : '*/*'}));
+app.use(bodyParser.json());
+app.use(cors()); // enabling CORS for all requests
 router(app);
 
 // Server setup
 const port = process.env.PORT || 3090;
-const server = http.createServer(app);
-server.listen(port);
-console.log('Server listening on the port : ', port);
+app.listen(port, () => {
+    console.log(`listening on port ${port}`);
+});
+

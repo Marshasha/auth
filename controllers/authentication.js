@@ -14,6 +14,7 @@ exports.signin = function(req, res, next){
 
 exports.signup = function(req, res, next){
     console.log(req.body);
+    const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
 
@@ -32,8 +33,9 @@ exports.signup = function(req, res, next){
 
         // if a user does NOT exist, create and save user record
         const user = new User({
-           email : email,
-           password : password
+            username : username,
+            email : email,
+            password : password
         });
 
         // to save a user
@@ -42,6 +44,9 @@ exports.signup = function(req, res, next){
         });
 
         //Respond if the user was created
-         res.json({token : tokenForUser(user)});
+         res.status(status).json(
+             {token : tokenForUser(user)},
+            // {message: `Registered as ${username}`}
+             );
     });
 }

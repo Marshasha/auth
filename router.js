@@ -10,13 +10,7 @@ module.exports = function(app){
         res.send({hello: 'You are authorized'});
     });
     app.post('/signin', requireSignin, Authentication.signin);
-    app.post('/signup', Authentication.signup);
+    app.post('/api/auth/signup', Authentication.signup);
+
+
 }
-
-/*module.exports = function (app) {
-    app.get('/', function(req, res, next){
-        res.send(['water', 'phone', 'balloon']);
-    });
-
-
-}*/

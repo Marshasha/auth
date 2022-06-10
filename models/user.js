@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 // Define user model
 
 const userSchema = new Schema({
+    username : String,
     email : {type : String, unique: true, lowercase : true},
     password : String
 });

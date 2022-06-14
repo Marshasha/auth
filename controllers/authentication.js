@@ -1,4 +1,4 @@
-const jwt = require('jwt-simple');
+/*const jwt = require('jwt-simple');
 const User = require('../models/user');
 const config = require('../config');
 
@@ -49,4 +49,4 @@ exports.signup = function(req, res, next){
             // {message: `Registered as ${username}`}
              );
     });
-}
+}*/

@@ -1,4 +1,4 @@
-const passport = require('passport');
+/*const passport = require('passport');
 const User = require('../models/user');
 const config = require('../config');
 const JwtStrategy = require('passport-jwt').Strategy;
@@ -52,4 +52,4 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done){
 
 // Use this strategy
 passport.use(jwtLogin);
-passport.use(localLogin);
+passport.use(localLogin); */

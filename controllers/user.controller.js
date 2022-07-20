@@ -1,5 +1,5 @@
 const httpStatus = require('http-status');
-const { ApiError } = require('../middleware/apiError');{}
+const { ApiError } = require('../middleware/apiError');
 
 const { userService, authService, emailService } = require('../services');
 
@@ -12,6 +12,17 @@ const userController = {
             }
             res.json(res.locals.permission.filter(user._doc))
         } catch(error){
+            next(error)
+        }
+    },
+    async allPatients(req, res, next){
+        try{
+            const listOfPatients = await userService.findAllPatients();
+            if(listOfPatients.length === 0){
+                throw new ApiError(httpStatus.NOT_FOUND,'No patients in the list')
+            }
+            res.json(listOfPatients)
+        }catch(error){
             next(error)
         }
     },

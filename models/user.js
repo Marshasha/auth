@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     role : {
         type: String,
         enum: ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'],
-        default : 'ROLE_DOCTOR'
+        default : 'ROLE_PATIENT'
     },
     date : {
         type : Date,

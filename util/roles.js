@@ -11,11 +11,17 @@ const allRights = {
 let grantsObject = {
 
     ROLE_ADMIN:{
-        test:allRights
+        test:allRights,
+        profile: allRights
     },
     ROLE_DOCTOR:{
-        test:{
-            'read:any': ['*'],
+        profile: allRights,
+        patients : allRights
+    },
+    ROLE_PATIENT:{
+        profile: {
+            'read:own':['*', '!password'],
+            'update:own':['*']
         }
     }
 }

@@ -9,8 +9,11 @@ const authController = {
             const user = await authService.createUser(username, email, password);
             const token = await authService.genAuthToken(user);
 
-            // send verification email
-          //  await emailService.registerEmail(email,user);
+            /**
+             * Verification email could be used for registration
+             * await emailService.registerEmail(email,user);
+             */
+
 
 
             res.cookie('x-access-token',token)
@@ -19,8 +22,7 @@ const authController = {
                 token
             })
         } catch(error){
-            //console.log(error.message)
-           // res.status(httpStatus.BAD_REQUEST).send(error.message)
+
             next(error);
         }
     },
@@ -32,15 +34,16 @@ const authController = {
             const user = await authService.signInWithEmailAndPassword(email, password);
             const token = await authService.genAuthToken(user);
 
+            console.log("User sent " + user)
+
             res.cookie('x-access-token',token)
-                .send({ user,token })
+                .send({ user,token})
         }catch(error){
             res.status(httpStatus.BAD_REQUEST).send(error.message)
             next(error);
         }
     },
     async isauth(req,res,next){
-        //res.json({ok: 'good'})
         res.json(req.user);
     },
     async testrole(req,res,next){

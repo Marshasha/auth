@@ -19,10 +19,6 @@ const app = express();
 const port = 3090;
 
 
-const roles = [
-    'ROLE_DOCTOR',
-    'ROLE_ADMIN'
-]
 
 app.use(helmet()); // adding Helmet to enhance API's security
 app.use(bodyParser.json()); // using bodyParser to parse JSON bodies into JS objects
@@ -44,11 +40,6 @@ app.use((err,req,res,next)=>{
     handleError(err,res)
 })
 
-/*function tokenForUser(user){
-    const timeStamp = new Date().getTime();
-    return jwt.encode({ subject: user.id , issuedAt : timeStamp}, config.secret);
-}
-*/
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);

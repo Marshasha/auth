@@ -13,6 +13,10 @@ const findUserById = async (_id) => {
     return User.findById(_id);
 }
 
+const findAllPatients = async () => {
+    return User.find({role : 'ROLE_PATIENT'}, {item: 1, username : 1});
+}
+
 const updateUserProfile = async(req) => {
     try {
         const user = await User.findOneAndUpdate(
@@ -67,5 +71,6 @@ module.exports = {
     findUserById,
     updateUserProfile,
     updateUserEmail,
-    validateToken
+    validateToken,
+    findAllPatients
 }

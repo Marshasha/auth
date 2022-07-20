@@ -1,4 +1,4 @@
-const Authentication = require('./controllers/authentication');
+/*const Authentication = require('./controllers/authentication');
 const passportService = require('./services/passport');
 const passport = require('passport');
 
@@ -10,13 +10,7 @@ module.exports = function(app){
         res.send({hello: 'You are authorized'});
     });
     app.post('/signin', requireSignin, Authentication.signin);
-    app.post('/signup', Authentication.signup);
-}
-
-/*module.exports = function (app) {
-    app.get('/', function(req, res, next){
-        res.send(['water', 'phone', 'balloon']);
-    });
+    app.post('/api/auth/signup', Authentication.signup);
 
 
-}*/
+} */

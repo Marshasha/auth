@@ -29,12 +29,10 @@ const authController = {
     async signin(req,res,next){
         try {
             const { email, password } = req.body;
-            console.log("Data requested in signin controller " + email + " " + password);
 
             const user = await authService.signInWithEmailAndPassword(email, password);
             const token = await authService.genAuthToken(user);
 
-            console.log("User sent " + user)
 
             res.cookie('x-access-token',token)
                 .send({ user,token})
@@ -46,12 +44,6 @@ const authController = {
     async isauth(req,res,next){
         res.json(req.user);
     },
-    async testrole(req,res,next){
-        res.json({ok:'yes'});
-    },
-    async test(req, res, next){
-        await res.json({ok: 'yes'})
-    }
 
 }
 

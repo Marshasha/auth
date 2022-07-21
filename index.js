@@ -18,8 +18,6 @@ const compression = require('compression');
 mongoose.connect("mongodb://localhost:27017/auth");
 
 const app = express();
-const port = 3090;
-
 
 
 app.use(helmet()); // adding Helmet to enhance API's security
@@ -45,13 +43,14 @@ app.use((err,req,res,next)=>{
     handleError(err,res)
 })
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'build')));
 if(process.env.NODE_ENV === 'production'){
     app.get('/*', (req, res)=>{
-        res.sendFile(path.resolve(__dirname, '../src', 'build', 'App.js'))
+        res.sendFile(path.join(__dirname, 'build', 'index.html'))
     })
 }
 
+const port = process.env.PORT || 3090
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });

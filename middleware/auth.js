@@ -6,7 +6,7 @@ const { roles } = require('../util/roles')
 
 const verify = (req, res, resolve, reject, rights) => async(err, user) => {
     if(err || !user){
-        console.log("No User " + user)
+
         return reject(new ApiError(httpStatus.UNAUTHORIZED, 'Sorry, unauthorized'))
     }
 

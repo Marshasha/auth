@@ -76,15 +76,7 @@ userSchema.methods.comparePassword = async function(providedPassword, callback){
     return match;
 }
 
-/*
 
-userSchema.methods.generateRegisterToken = async function(){
-    let user = this;
-    const userObj = { sub: user._id.toHexString()};
-    const timeStamp = new Date().getTime();
-    const token = jwt.encode({subject : userObj, issuedAt : timeStamp}, config.secret)
-    return token;
-} */
 
 // Create model class
 const User = mongoose.model('user', userSchema);

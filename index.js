@@ -10,6 +10,8 @@ const routes = require('./routes');
 const passport = require('passport');
 const { jwtStrategy } = require('./middleware/passport');
 const { handleError, convertToApiError } = require('./middleware/apiError');
+const path = require('path');
+const compression = require('compression');
 
 
 //DB connexion
@@ -26,6 +28,7 @@ app.use(cors()); // enabling CORS for all requests
 app.use(morgan('combined')); // adding morgan to log HTTP requests
 app.use(xss());
 app.use(mongoSanitize());
+app.use(compression());
 
 // PASSPORT
 app.use(passport.initialize());
@@ -36,10 +39,18 @@ app.use('/api', routes);
 
 // error handling
 app.use(convertToApiError)
+
+
 app.use((err,req,res,next)=>{
     handleError(err,res)
 })
 
+app.use(express.static(path.join(__dirname, 'public')));
+if(process.env.NODE_ENV === 'production'){
+    app.get('/*', (req, res)=>{
+        res.sendFile(path.resolve(__dirname, '../src', 'build', 'App.js'))
+    })
+}
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);

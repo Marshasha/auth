@@ -35,8 +35,6 @@ const signInWithEmailAndPassword = async(email,password) =>{
 
         let user = await userService.findUserByEmail(email);
 
-        console.log("User " + user);
-
         if(!user){
             throw new ApiError(httpStatus.BAD_REQUEST,'Sorry BAD email')
         }

@@ -5,7 +5,7 @@ const httpStatus = require('http-status');
 class ApiError extends Error {
     constructor(statusCode,message){
         super();
-        console.log("Api Error " + statusCode)
+
         this.statusCode = statusCode;
         this.message = message;
     }
